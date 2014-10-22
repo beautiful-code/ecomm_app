@@ -1,0 +1,16 @@
+
+<%= provide(:title, "#{@product.name} #{@product.manufacturer}" ) %>
+<div class="row display_product">
+  <div class="col-xs-offset-2 col-xs-4">
+    <%= image_tag @product.image_url.to_s , class: "product_image_display"%>
+  </div>
+  <div class="col-xs-4">
+    <h4 class="text-primary"><%= "#{@product.manufacturer} #{@product.name}" %></h4>
+    <p class="text-info"> <%= @product.description %></p>
+    <p class="cost"> <%="Rs: #{@product.cost}/- only" %> </p>
+    <%= form_for(:cart,url:cart_path,method: 'PUT',role:"form") do |f| %>
+      <%= f.text_field "product_id", class: "hidden" , value: "#{@product.id}"%>
+      <%= f.submit "Add to Cart", class: "btn btn-primary btn-large cart" %>
+    <% end %>
+    </div>
+</div>

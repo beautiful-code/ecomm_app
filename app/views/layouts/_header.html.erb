@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse navbar-fixed">
+  <div class="container">
+    <ul class="nav navbar-nav pull-left">
+      <li><%= link_to "Home", root_path %></li>
+      <% if logged_in? && current_user.admin? %>
+        <li><%= link_to "Edit Products", admin_products_path %></li>
+      <% end %>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li><%= link_to "Cart (#{getCartItemsCount})", cart_path, method: "get", class: 'cartCount' %></li>
+      <% if !logged_in? %>
+        <li><%= link_to "Sign In", signin_path %></li>
+      <% else %>
+        <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

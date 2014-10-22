@@ -1,0 +1,38 @@
+<% provide(:title,"Cart") %>
+
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-8">
+    <table class="table table-stripped">
+      <thead>
+      <th></th>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Address</th>
+      <th>SUB TOTAL</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <% @order_list.each do |order_item| %>
+        <%= render 'order_item', :item => order_item %>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-primary">Total</td>
+        <td>
+          <% sum = 0  %>
+          <% @order_list.each do |p| %>
+            <% sum = sum + ( p.cost * p.quantity  ) %>
+          <% end %>
+          <p class="pull-left text-primary"><%= sum %></p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <%= link_to "Checkout", orders_path, method:'post', class: "btn btn-primary" %>
+  </div>
+</div>

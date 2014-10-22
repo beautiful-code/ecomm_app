@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="container">
+    <%= form_for([:admin,product] ,:html => {class: "col-xs-offset-3 col-xs-6",
+                                                                 multipart: true}) do |f| %>
+      <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name , class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <% if true %>
+        <%= f.label :image %>
+        <%= f.file_field :image , class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :remote_image_url, "or image url" %>
+        <%= f.text_field :remote_image_url , class: "form-control"%>
+      <% else %>
+        <%= image_tag product.image_url.to_s , class: "product_thumbnail"%>
+        <%= link_to "delete" , removeImage(product) %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :units, "Number of Units" %>
+      <%= f.text_field :units, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :manufacturer %>
+      <%= f.text_field :manufacturer, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cost, "Price" %>
+      <%= f.text_field :cost, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+    <%= f.submit "Save changes", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+</div>

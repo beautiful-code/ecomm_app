@@ -1,0 +1,16 @@
+<tr>
+  <td><%= image_tag item.image_url.to_s , class: 'product_image_cart'%></td>
+  <td><%= "#{item.manufacturer} #{item.name}" %></td>
+  <td>
+    <%= form_for(:cart,url:cart_path,method: 'PUT',role:"form") do |f| %>
+      <%= f.text_field 'product_id', value: item.id, class: 'hidden' %>
+      <%= f.number_field('quantity', value: item.quantity, min: 1) %>
+      <%= f.submit "update", class: 'btn btn-link' %>
+    <% end %>
+  </td>
+  <td><%= item.cost  %></td>
+  <td><%= item.address %></td>
+  <td><%= item.cost * item.quantity %></td>
+  <td><%= link_to "remove", remove_item_cart_path(:p_id => item.id), method: :delete %></td>
+</tr>
+

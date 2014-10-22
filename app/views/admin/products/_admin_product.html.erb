@@ -1,0 +1,13 @@
+<% products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.manufacturer %></td>
+    <td><%= image_tag product.image_url.to_s, class: "product_thumbnail" %></td>
+    <td><%= product.description %></td>
+    <td><%= product.units %></td>
+    <td><%= product.cost %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+    <td><%= link_to 'Delete', [:admin,product] , method: :delete ,data: {confirm: "Are you sure?"}
+    %></td>
+  </tr>
+<% end %>

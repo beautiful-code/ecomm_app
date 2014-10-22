@@ -1,0 +1,20 @@
+<%= provide(:title,"Catalog") %>
+<div class="col-xs-3">
+  <h3>Filters</h3>
+  <ul class="filters">
+    <%= render 'company_filter', :companies => @companies  %>
+  </ul>
+</div>
+<div class="col-xs-9">
+  <div class="row">
+    <%= form_tag(products_path, method: 'get', class: "form-inline") do %>
+      <div class="form-group col-xs-offset-1 col-xs-8">
+        <%= text_field_tag :search, params[:search] , class: "search_text_field"%>
+        </div>
+      <div class="form-group col-xs-2">
+        <%= submit_tag "Search" , name: nil , class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+  <%= render @products %>
+</div>

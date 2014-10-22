@@ -1,0 +1,73 @@
+@import "bootstrap";
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: auto;
+  padding: 10px;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+.product_thumbnail{
+  width:80px;
+  height:100px;
+}
+
+.product_image_preview{
+  width: 180px;
+  height: 200px;
+}
+
+.product_image_cart{
+  width: 90px;
+  height: 100px;
+}
+
+.preview_product{
+  display:inline-block;
+  text-align: center;
+  padding: 25px;
+
+  .name{
+    font-weight: 600;
+  }
+
+  .cost{
+    font-weight: 400;
+  }
+
+  .description{
+    font-weight: 200;
+  }
+}
+
+.debug_dump{
+  clear:both;
+}
+
+.product_image_display{
+  width: 250px;
+  height: 260px
+}
+
+.filters{
+  list-style-type: none;
+}
+
+.search_text_field{
+  width: 100%;
+}
+
+.singin_form{
+  input{
+    width:100%;
+  }
+}
