@@ -13,4 +13,10 @@ module SessionsHelper
       redirect_to root_path
     end
   end
+
+  def isLoggedIn
+    unless logged_in?
+      redirect_to signin_path
+    end
+  end
 end

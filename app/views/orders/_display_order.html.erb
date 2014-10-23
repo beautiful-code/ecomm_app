@@ -1,0 +1,13 @@
+<tr>
+  <td><a href="<%= user_order_path(@user.id,order.id) %>"><%= order.id %></a></td>
+  <td><%= order.created_at %></td>
+  <td><ul class="list-group">
+    <% order.order_items.each do |order_item| %>
+      <li class="list-group-item"><%= order_item.product_name %></li>
+    <% end %>
+  </ul>
+  </td>
+  <td><%= order.address %></td>
+  <td><%= order.status %></td>
+  <td><a href="<%= user_order_path(@user.id,order.id)%>"> view details </a></td>
+</tr>

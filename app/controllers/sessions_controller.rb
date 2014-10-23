@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:ecomm_app_remember_token)
-    cookies.delete(:ecomm_app_cart)
+    cookies.delete(:shopping_cart)
     redirect_to root_path
   end
 end

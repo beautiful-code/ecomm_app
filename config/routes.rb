@@ -2,6 +2,7 @@ Ecom::Application.routes.draw do
 
   namespace :admin do
     resources :products, except: :show
+    resources :orders, only: [:edit]
   end
 
   resources :products, only: [:index, :show]
@@ -10,12 +11,14 @@ Ecom::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/signup', to: 'users#new'
 
-  resources :users, only: [:new , :create]
+  resources :users, only: [:new , :create] do
+    resources :orders, only: [:create, :show, :index]
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resource :cart, only: [ :show, :update] do
     delete :remove_item
   end
-  resource :orders, only: [:create]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

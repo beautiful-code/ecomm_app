@@ -10,7 +10,11 @@ class CartsController < ApplicationController
 
       p = Product.find_by_id(Integer(cart_item_id))
       p[:quantity] = quantity
-      p[:address] = current_user.address if current_user
+      if logged_in?
+        p[:address] = current_user.address
+      else
+        p[:address] = ""
+      end
       @order_list.push(p)
     end
   end

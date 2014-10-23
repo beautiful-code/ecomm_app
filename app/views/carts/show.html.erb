@@ -32,7 +32,8 @@
       </tr>
       </tbody>
     </table>
-
-    <%= link_to "Checkout", orders_path, method:'post', class: "btn btn-primary" %>
+    <% if getCartItemsCount > 0 %>
+      <%= link_to "Checkout", user_orders_path(current_user.id), method:'post', class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

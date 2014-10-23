@@ -11,6 +11,7 @@
       <% if !logged_in? %>
         <li><%= link_to "Sign In", signin_path %></li>
       <% else %>
+        <li><%= link_to "Orders", user_orders_path(current_user.id) %></li>
         <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
       <% end %>
     </ul>

@@ -1,0 +1,28 @@
+<% provide(:title, "Your Orders") %>
+
+<div class="container">
+  <%= form_tag user_orders_path(current_user.id), method:'get', class: 'form-inline', role: 'form' do %>
+    <div class="form-group">
+      <%= text_field_tag :search , params[:search], class: "search_text_field" %>
+    </div>
+    <%= submit_tag "Search", name: nil, class: "btn btn-primary form-control" %>
+  <% end %>
+
+</div>
+<div class="container">
+  <table class=" table table-striped">
+    <thead>
+    <th>Order Id</th>
+    <th>Date</th>
+    <th>Items</th>
+    <th>Delivery Address</th>
+    <th>Status of the Order</th>
+    <th></th>
+    </thead>
+    <tbody>
+    <% @list_of_orders.each do |order| %>
+      <%= render "display_order", order: order %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
