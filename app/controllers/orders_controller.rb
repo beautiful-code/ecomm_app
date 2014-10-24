@@ -73,5 +73,10 @@ class OrdersController < ApplicationController
     else
       @list_of_orders = @user.orders.order("created_at DESC")
     end
+    #get list of order items and store it in an hash
+    @list_of_order_items = {}
+    @list_of_orders.each do |order|
+      @list_of_order_items[order.id] = order.order_items
+    end
   end
 end

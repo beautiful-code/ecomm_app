@@ -1,5 +1,5 @@
 <tr>
-  <td><a href="<%= user_order_path(@user.id,order.id) %>"><%= order.id %></a></td>
+  <td><%= order.id %></td>
   <td><%= order.created_at %></td>
   <td><ul class="list-group">
     <% order_items.each do |order_item| %>
@@ -14,6 +14,13 @@
   </ul>
   </td>
   <td><%= order.address %></td>
-  <td><%= order.status %></br>last updated on <%= order.updated_at %></td>
-  <td><a href="<%= user_order_path(@user.id,order.id)%>"> view details </a></td>
+  <td>
+    <%= form_for(:order,url:admin_orders_path(order_id:order.id),method:'put') do |f| %>
+      <%= f.text_field :id, value: order.id, class:'hidden' %>
+      <%= f.select(:status, options_for_select([['initiated'],['in_transit'],['recieved']], order.status) )%>
+      <%= f.submit "update" , class: 'btn btn-link'%>
+    <% end %>
+  </td>
+  <td><%= order.status %></td>
+  <td></td>
 </tr>

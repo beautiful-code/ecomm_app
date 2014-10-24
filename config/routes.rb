@@ -2,7 +2,7 @@ Ecom::Application.routes.draw do
 
   namespace :admin do
     resources :products, except: :show
-    resources :orders, only: [:edit]
+    resource :orders, only: [:edit, :update]
   end
 
   resources :products, only: [:index, :show]

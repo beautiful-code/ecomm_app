@@ -3,7 +3,8 @@
     <ul class="nav navbar-nav pull-left">
       <li><%= link_to "Home", root_path %></li>
       <% if logged_in? && current_user.admin? %>
-        <li><%= link_to "Edit Products", admin_products_path %></li>
+        <li><%= link_to "Update Products", admin_products_path %></li>
+        <li><%= link_to "Update Orders", edit_admin_orders_path  %></li>
       <% end %>
     </ul>
     <ul class="nav navbar-nav pull-right">

@@ -16,6 +16,7 @@ module SessionsHelper
 
   def isLoggedIn
     unless logged_in?
+      cookies["url"] = request.url
       redirect_to signin_path
     end
   end

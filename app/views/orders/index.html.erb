@@ -15,13 +15,15 @@
     <th>Order Id</th>
     <th>Date</th>
     <th>Items</th>
+    <th>Quantity</th>
     <th>Delivery Address</th>
     <th>Status of the Order</th>
     <th></th>
     </thead>
     <tbody>
     <% @list_of_orders.each do |order| %>
-      <%= render "display_order", order: order %>
+        <% print order %>
+      <%= render "display_order", order: order, order_items: @list_of_order_items[order.id]%>
     <% end %>
     </tbody>
   </table>

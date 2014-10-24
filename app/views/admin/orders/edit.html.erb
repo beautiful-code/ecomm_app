@@ -1,0 +1,20 @@
+<% provide(:title,"All Orders") %>
+
+<div class="container">
+  <table class=" table table-striped">
+    <thead>
+    <th>Order Id</th>
+    <th>Date</th>
+    <th>Items</th>
+    <th>Quantity</th>
+    <th>Delivery Address</th>
+    <th>Status of the Order</th>
+    <th></th>
+    </thead>
+    <tbody>
+    <% @orders.each do |order| %>
+      <%= render "update_order", order: order, order_items: @order_items[order.id] %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

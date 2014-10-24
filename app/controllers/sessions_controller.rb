@@ -10,8 +10,12 @@ class SessionsController < ApplicationController
       else
         cookies[:ecomm_app_remember_token] = @user.remember_token
       end
-        #self.current_user = @user
+      if cookies["url"]
+        redirect_to cookies["url"]
+        cookies.delete("url")
+      else
         redirect_to root_path
+      end
     else
       redirect_to signin_path
     end
