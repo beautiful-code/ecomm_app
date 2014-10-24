@@ -1,5 +1,6 @@
 <% companies.each do |company| %>
-  <li><%= check_box_tag "search[companies][]", company.manufacturer , false %>
+  <li><%= check_box_tag "company_filter[]", company.manufacturer ,
+                        companies_in_search_field.include?(company.manufacturer) %>
     <%= company.manufacturer %>
   </li>
 <% end %>

@@ -25,8 +25,10 @@ class Product < ActiveRecord::Base
   mount_uploader :image, ProductImageUploader
 
   def self.search(search)
-    if search
+    if search.class != Array
       where('name like ? or manufacturer like ?',"%#{search}%","%#{search}%")
+    elsif search.class == Array
+      where(manufacturer: search)
     else
       scoped
     end
