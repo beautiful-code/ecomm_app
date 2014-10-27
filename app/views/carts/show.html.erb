@@ -33,7 +33,14 @@
       </tbody>
     </table>
     <% if getCartItemsCount > 0 %>
-      <%= link_to "Checkout", user_orders_path(current_user.id), method:'post', class: "btn btn-primary" %>
+      <% if logged_in? %>
+        <% path = user_orders_path(current_user.id) %>
+      <%else%>
+        <% path = signin_path %>
+        <% flash[:danger] = "Please login to checkout the cart items" %>
+        <% cookies["url"] = cart_path %>
+      <% end %>
+      <%= link_to "Checkout", "#{path}", method:'post', class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

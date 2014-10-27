@@ -20,4 +20,8 @@ module SessionsHelper
       redirect_to signin_path
     end
   end
+
+  def signin_user(user)
+    cookies[:ecomm_app_remember_token] = user.remember_token
+  end
 end

@@ -13,6 +13,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     if @product.save
+      flash[:success] = "Product has been added to the catalog"
       redirect_to admin_products_path
     else
       render 'new'
@@ -22,6 +23,7 @@ class Admin::ProductsController < ApplicationController
   def update
     @product = Product.find_by_id(params[:id])
     if @product.update_attributes(params[:product])
+      flash[:success] = "Product details have been updated"
       render 'edit'
     else
       render 'edit'
@@ -30,6 +32,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     Product.find_by_id(params[:id]).destroy
+    flash[:success] = "Product has been removed successfully"
     redirect_to admin_products_path
   end
 

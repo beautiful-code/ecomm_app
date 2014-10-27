@@ -19,6 +19,7 @@ class Admin::OrdersController < ApplicationController
     #update the order status
     Order.find_by_id!(order_id).update_attribute('status',order_status)
     #redirect to update orders page
+    flash[:info] = "The order status has been updated successfully"
     redirect_to edit_admin_orders_path
   end
 end

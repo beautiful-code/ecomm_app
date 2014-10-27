@@ -1,6 +1,7 @@
 <% provide(:title, 'Sign Up') %>
 <div class = "container">
   <%= form_for(@user , :html => {class: "form col-xs-offset-3 col-xs-6"}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class:"form-control" %>

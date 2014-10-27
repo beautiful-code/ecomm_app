@@ -16,7 +16,9 @@ class SessionsController < ApplicationController
       else
         redirect_to root_path
       end
+      flash[:success] = "Welcome #{@user.name}"
     else
+      flash[:danger] = "wrong username/password"
       redirect_to signin_path
     end
   end

@@ -26,6 +26,7 @@ class CartsController < ApplicationController
     cart.delete(params[:p_id])
     #load the cart back to cookies
     cookies.permanent[:shopping_cart] = cart.to_json
+    flash[:info] = "item removed from cart"
     redirect_to cart_path
   end
 
@@ -42,8 +43,10 @@ class CartsController < ApplicationController
     cookies.permanent[:shopping_cart] = cart.to_json
     #redirect to cart page or product page
     if !params[:cart][:quantity]
+      flash[:info] = "Added to cart!!!"
       redirect_to product_path(product_id)
     else
+      flash[:info] = "quantity updated"
       redirect_to cart_path
     end
   end

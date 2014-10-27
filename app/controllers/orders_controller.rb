@@ -4,7 +4,10 @@ class OrdersController < ApplicationController
   def create
 
     # check if the user id logged in, if not redirect him to login page
-    redirect_to signin_path if !logged_in? && getCartItemsCount > 0
+    if !logged_in? && getCartItemsCount > 0
+      flash[:danger] = "Please login to checkout items in the cart"
+      redirect_to signin_path
+    end
 
     # load cart from cookies
     @cart = JSON.parse(cookies[:shopping_cart])
@@ -47,6 +50,7 @@ class OrdersController < ApplicationController
 
     # redirect the user to his order history page
     puts current_user.id
+    flash[:success] = "Your order has been placed successfully"
     redirect_to user_order_path(current_user.id,@order.id)
   end
 
