@@ -4,7 +4,8 @@
   <ul class="filters">
     <%= form_tag(products_path, method:'get') do %>
       <%= render 'company_filter', :companies => @companies, :companies_in_search_field => @companies_in_search_field  %>
-      
+
+      <%= range_field_tag(:price,"45",class: "slider slider-horizontal") %>
       <%= submit_tag "Apply Filter", name: nil, class:'btn btn-link'%>
     <% end %>
   </ul>

@@ -23,4 +23,17 @@ FactoryGirl.define do
     order
     product
   end
+
+  factory :review do
+    user
+    product
+    content " Test content "
+    title "sample title"
+  end
+
+  factory :rating do
+    user
+    product
+    rating_value 4
+  end
 end

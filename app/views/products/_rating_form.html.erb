@@ -1,0 +1,13 @@
+<div class="container">
+  <% (1..5).each do |i| %>
+    <% if i<= @user_product_rating %>
+      <%= link_to image_tag("shining.png",class:"star"),
+                  {:action => 'update', :controller => 'ratings',rating_value: "#{i}"},
+                  method: :put %>
+    <% else %>
+      <%= link_to image_tag("star.png",class:"star"),
+                  {:action => 'update', :controller => 'ratings',rating_value: "#{i}"},
+                  method: :put %>
+    <% end %>
+  <% end %>
+</div>

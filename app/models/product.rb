@@ -17,6 +17,9 @@ class Product < ActiveRecord::Base
   attr_accessible :cost, :description, :manufacturer, :name, :units, :image, :remote_image_url
   has_many :order_items
   has_many :orders, through: :order_items
+  has_many :reviews
+  has_many :ratings
+
   validates :cost, presence: true, :numericality => {:only_integer => true}
   validates :name, presence: true
   validates :description, presence: true

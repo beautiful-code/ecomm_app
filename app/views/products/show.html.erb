@@ -6,11 +6,35 @@
   </div>
   <div class="col-xs-4">
     <h4 class="text-primary"><%= "#{@product.manufacturer} #{@product.name}" %></h4>
+    <%= render 'view_avg_rating' %>
     <p class="text-info"> <%= @product.description %></p>
     <p class="cost"> <%="Rs: #{@product.cost}/- only" %> </p>
     <%= form_for(:cart,url:cart_path,method: 'PUT',role:"form") do |f| %>
       <%= f.text_field "product_id", class: "hidden" , value: "#{@product.id}"%>
       <%= f.submit "Add to Cart", class: "btn btn-primary btn-large cart" %>
     <% end %>
-    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h4>Rate the product: <%= render 'rating_form' %></h4>
+</div>
+
+<div class="container">
+
+  <div class="pull-right col-xs-6">
+    <% if @review_user_array.length > 0 %>
+      <h3>Product Reviews</h3>
+      <table class="table table-borders">
+        <% @review_user_array.each do |review_user| %>
+          <%= render 'review', :review => review_user %>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+  <div class="pull-left col-xs-6">
+    <%= render 'new_review' if logged_in? %>
+  </div>
+
 </div>

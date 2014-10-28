@@ -5,19 +5,22 @@ Ecom::Application.routes.draw do
     resource :orders, only: [:edit, :update]
   end
 
+  resources :reviews, only: [:create]
+
   resources :products, only: [:index, :show]
   root to: 'products#index'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/signup', to: 'users#new'
 
-  resources :users, only: [:new , :create] do
+  resources :users, only: [:new , :create, :update, :edit] do
     resources :orders, only: [:create, :show, :index]
   end
   resources :sessions, only: [:new, :create, :destroy]
   resource :cart, only: [ :show, :update] do
     delete :remove_item
   end
+  resources :ratings, only: [:update]
 
 
   # The priority is based upon order of creation:
