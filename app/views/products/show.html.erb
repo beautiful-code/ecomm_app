@@ -6,7 +6,7 @@
   </div>
   <div class="col-xs-4">
     <h4 class="text-primary"><%= "#{@product.manufacturer} #{@product.name}" %></h4>
-    <%= render 'view_avg_rating' %>
+    <%= render 'view_avg_rating' , :product_avg_rating => @product_avg_rating %>
     <p class="text-info"> <%= @product.description %></p>
     <p class="cost"> <%="Rs: #{@product.cost}/- only" %> </p>
     <%= form_for(:cart,url:cart_path,method: 'PUT',role:"form") do |f| %>

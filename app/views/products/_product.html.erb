@@ -1,5 +1,8 @@
 <a href="<%= product_path(product)%>"><div class="preview_product">
   <%= image_tag product.image_url.to_s , class: 'product_image_preview'%></br>
+  <div>
+  <%= render 'view_avg_rating', :product_avg_rating => @products_and_ratings["#{product.id}"] %>
+  </div>
   <h5 class="name"><%= "#{product.manufacturer}  #{product.name}" %></h5>
   <p class="cost"><%= "Rs #{product.cost}" %></p>
   <p class="description"><%= product.description %></p>

@@ -29,6 +29,12 @@ class ProductsController < ApplicationController
     @products = Product.search(params[:company_filter])
     @companies = Product.select(:manufacturer).uniq
     @companies_in_search_field = params[:company_filter] || []
+    #get average rating of all the products
+    @products_and_ratings = {}
+    @products.each do |product|
+      product_rating = product.ratings.average('rating_value') || 0
+      @products_and_ratings["#{product.id}"] = product_rating
+    end
   end
 
   def update

@@ -1,9 +1,8 @@
-<div class="container">
+
   <% (1..5).each do |i| %>
-    <% if i<= @product_avg_rating %>
+    <% if i<= product_avg_rating %>
       <%= image_tag("shining.png",class:"star") %>
     <% else %>
       <%= image_tag("star.png",class:"star") %>
     <% end %>
   <% end %>
-</div>
