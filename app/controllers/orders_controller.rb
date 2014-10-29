@@ -1,32 +1,24 @@
 class OrdersController < ApplicationController
   include SessionsHelper, CartsHelper
-  before_filter :isLoggedIn
+  before_filter :authenticate_user
   def create
-
     # check if the user id logged in, if not redirect him to login page
     if !logged_in? && getCartItemsCount > 0
       flash[:danger] = "Please login to checkout items in the cart"
       redirect_to signin_path
     end
-
     # load cart from cookies
     @cart = JSON.parse(cookies[:shopping_cart])
-
     #delete the shopping cart cookies
     cookies.delete(:shopping_cart)
-
     # get current user details
     @user = User.find_by_id(current_user)
-
     # insert userid into order table and get the order id from orders table
     @order = Order.create!(user_id: @user.id, address: @user.address)
-
     # get the products details of the cart items
     @new_order_items = []
-
-    #intiate sum = 0 to calculate the total cost of the order
+    #initiate sum = 0 to calculate the total cost of the order
     sum = 0;
-
     @cart.each do |product,quantity|
       # get the product object and convert it into an hash
       p = Product.find_by_id!(product).attributes
@@ -34,10 +26,8 @@ class OrdersController < ApplicationController
       sum = sum + ( quantity * p["cost"] )
       @new_order_items.push(p)
     end
-
     #update the total amount of the order in orders table
     @order.update_attribute(:amount,sum)
-
     # iterate over the order_items and do the following for each of them
     @new_order_items.each do |new_order_item|
       # insert order_id, product_id, :price, :quantity in the order_item table
@@ -47,8 +37,7 @@ class OrdersController < ApplicationController
                        price: new_order_item["cost"],
                        product_name: "#{new_order_item['manufacturer']} #{new_order_item['name']}")
     end
-
-    # redirect the user to his order history page
+    # redirect the user to the order page
     puts current_user.id
     flash[:success] = "Your order has been placed successfully"
     redirect_to user_order_path(current_user.id,@order.id)

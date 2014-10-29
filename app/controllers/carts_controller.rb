@@ -7,7 +7,6 @@ class CartsController < ApplicationController
     #load items in the cart
     @order_list = []
     @cart.each do |cart_item_id,quantity|
-
       p = Product.find_by_id(Integer(cart_item_id))
       p[:quantity] = quantity
       if logged_in?

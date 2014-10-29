@@ -10,18 +10,27 @@ class ProductsController < ApplicationController
     @reviews_array.each do |review|
       temp_review = review.attributes
       temp_review["user_name"] = review.user["name"]
-      @current_user_review = true if review["user_id"] == current_user.id
       @review_user_array.push(temp_review)
-    end
-    #get user rating for the product
-    user_product_rating_array = @product.ratings.where('user_id = ?',current_user.id)
-    if user_product_rating_array.length == 1
-      @user_product_rating = user_product_rating_array[0][:rating_value]
-    else
-      @user_product_rating = 0
     end
     #get average rating for the product
     @product_avg_rating = @product.ratings.average('rating_value') || 0
+    #if user logged in
+    if logged_in?
+      #get user rating for the product
+      user_product_rating_array = @product.ratings.where('user_id = ?',current_user.id)
+      if user_product_rating_array.length == 1
+        @user_product_rating = user_product_rating_array[0][:rating_value]
+      else
+        @user_product_rating = 0
+      end
+      #get user review for the product
+      @user_review = @product.reviews.where('user_id = ?',current_user.id).first || Review.new
+    else
+      @user_product_rating = 0
+      @user_review = Review.new
+    end
+    #get total number of rating for the product
+    @total_number_of_ratings = @product.ratings.count
   end
 
   def index
@@ -34,15 +43,6 @@ class ProductsController < ApplicationController
     @products.each do |product|
       product_rating = product.ratings.average('rating_value') || 0
       @products_and_ratings["#{product.id}"] = product_rating
-    end
-  end
-
-  def update
-    @product = Product.find_by_id(params[:id])
-    if @product.update_attributes(params[:product])
-      render 'edit'
-    else
-      render 'edit'
     end
   end
 

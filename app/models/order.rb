@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   attr_accessible :user_id, :address, :status
   belongs_to :user
   has_many :order_items, dependent: :destroy
-  has_many :products, through: :order_items
+  # has_many :products, through: :order_items
 
   validates :user_id, presence: true
   validates :address, presence: true

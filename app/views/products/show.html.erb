@@ -6,7 +6,9 @@
   </div>
   <div class="col-xs-4">
     <h4 class="text-primary"><%= "#{@product.manufacturer} #{@product.name}" %></h4>
-    <%= render 'view_avg_rating' , :product_avg_rating => @product_avg_rating %>
+    <%= render 'ratings/show_rating' , :rating => @product_avg_rating %>
+    <p class="text-info">from <%= @total_number_of_ratings %> ratings</p>
+
     <p class="text-info"> <%= @product.description %></p>
     <p class="cost"> <%="Rs: #{@product.cost}/- only" %> </p>
     <%= form_for(:cart,url:cart_path,method: 'PUT',role:"form") do |f| %>
@@ -16,9 +18,11 @@
   </div>
 </div>
 
-<div class="container">
-  <h4>Rate the product: <%= render 'rating_form' %></h4>
-</div>
+<% if logged_in? %>
+  <div class="container">
+    <h4>Rate the product: <%= render 'reviews/rating_form' %></h4>
+  </div>
+<% end %>
 
 <div class="container">
 
@@ -34,7 +38,7 @@
   </div>
 
   <div class="pull-left col-xs-6">
-    <%= render 'new_review' if logged_in? %>
+    <%= render 'reviews/new_review' if logged_in? %>
   </div>
 
 </div>

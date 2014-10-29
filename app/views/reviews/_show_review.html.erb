@@ -1,0 +1,14 @@
+<tr>
+  <td><a href="<%= product_path(review.product_id) %>">
+    <%= review.product.name  %>
+  </a></td>
+  <td><a href="<%= product_path(review.product_id) %>">
+    <%= review.content %>
+  </a></td>
+
+  <td><a href="<%= product_path(review.product_id) %>">
+
+    <%= render 'ratings/show_rating', rating: get_rating(review.product_id) %>
+  </a></td>
+</tr>
+

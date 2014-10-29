@@ -5,7 +5,7 @@ Ecom::Application.routes.draw do
     resource :orders, only: [:edit, :update]
   end
 
-  resources :reviews, only: [:create]
+  resources :reviews, only: [:create, :update]
 
   resources :products, only: [:index, :show]
   root to: 'products#index'
@@ -15,6 +15,7 @@ Ecom::Application.routes.draw do
 
   resources :users, only: [:new , :create, :update, :edit] do
     resources :orders, only: [:create, :show, :index]
+    resources :reviews, only: [:index]
   end
   resources :sessions, only: [:new, :create, :destroy]
   resource :cart, only: [ :show, :update] do

@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   include SessionsHelper
-  before_filter :isAdmin
+  before_filter :authenticate_admin
   def edit
     redirect_to root_path if !current_user.admin?
     @product = Product.find_by_id(params[:id])

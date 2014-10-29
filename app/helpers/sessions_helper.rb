@@ -5,16 +5,16 @@ module SessionsHelper
   end
 
   def logged_in?
-    cookies[:ecomm_app_remember_token]
+    current_user
   end
 
-  def isAdmin
+  def authenticate_admin
     unless current_user.admin?
       redirect_to root_path
     end
   end
 
-  def isLoggedIn
+  def authenticate_user
     unless logged_in?
       cookies["url"] = request.url
       redirect_to signin_path

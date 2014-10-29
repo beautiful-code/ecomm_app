@@ -1,0 +1,8 @@
+
+<% (1..5).each do |i| %>
+  <% if i<= rating %>
+    <%= image_tag("shining.png",class:"star") %>
+  <% else %>
+    <%= image_tag("star.png",class:"star") %>
+  <% end %>
+<% end %>

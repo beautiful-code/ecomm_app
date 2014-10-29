@@ -1,0 +1,15 @@
+<% provide(:title,"My Reviews") %>
+<div class="container col-xs-offset-3 col-xs-6">
+  <table class="table table-striped view_reviews">
+    <thead>
+    <th>Product</th>
+    <th>Review</th>
+    <th>Rating</th>
+    </thead>
+    <tbody>
+    <% @reviews.each do |product_review| %>
+      <%= render 'show_review' , review: product_review%>
+    <% end %>
+    </tbody>
+  </table>
+</div>
