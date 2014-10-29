@@ -2,11 +2,13 @@
 
 <p>The order contains the following products</p>
 <table class="table">
-  <thead>
+  <thead class="table table-striped">
   <th>Product</th>
   <th>Quantity</th>
   </thead>
+  <tbody>
     <% @list_of_products.each do |order_item| %>
       <%= render 'show_order_item', order_item: order_item %>
     <% end %>
+  </tbody>
 </table>

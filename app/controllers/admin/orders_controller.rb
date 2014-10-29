@@ -22,7 +22,7 @@ class Admin::OrdersController < ApplicationController
     #if order status is dispatched send a mail to user
     if order_status == "in_transit"
       list_of_products = modified_order.order_items
-      # UserMailer.dispatch_notification_mail(modified_order.user_id,modified_order.id,list_of_products).deliver!
+      UserMailer.dispatch_notification_mail(modified_order.user_id,modified_order.id,list_of_products).deliver!
     end
     #redirect to update orders page
     flash[:info] = "The order status has been updated successfully"
